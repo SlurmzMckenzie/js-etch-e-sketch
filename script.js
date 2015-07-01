@@ -7,7 +7,7 @@ document.getElementById('container').appendChild(div);
 
 }
 
-
+document.addEventListener("DOMContentLoaded",defaultDiv);
 
 
 
