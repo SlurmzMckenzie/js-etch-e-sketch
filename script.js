@@ -1,16 +1,24 @@
 
 // Default Grid Size
 var grid = Math.pow(16,2);
-
+var gridWidth = 16;
 
 //draws new grid from prompt
 function gridPrompt() {
-	grid = Math.pow(prompt("How many squares wide would you like your grid?"),2);
+	gridWidth = prompt("How many squares wide would you like your grid?");
+	grid = Math.pow(gridWidth,2);
 	newGrid();
 }
 
-//creates DIV element inside container
+// creates DIV element inside container
 function newGrid() {
+
+// if statement to check input from prompt and ensure it's not too large that it will crash browser
+	if (gridWidth > 200) {
+		alert("Thats a lot of squares, you'll regret it. \nEnter a smaller number.");
+		gridPrompt();
+	};
+
 /*
 	If statement to check if the gridContainer DIV exists and if so destroy it
 	
@@ -19,34 +27,37 @@ function newGrid() {
 	if doesn't exist do nothing
 
 */
-	if (grid > 1000000) {
-		alert("Thats over 1 million squares, you'll regret it. \nEnter a smaller number.");
-		gridPrompt();
-	};
-
+	
 	var gridContainer = document.getElementById('gridContainer')
 
 	if (gridContainer != null) {
 		gridContainer.remove();
 	};
 
-// create a new gridContainer element
+//calculate width per grid square
+	var blockWidth = 570/gridWidth+"px";
+	var blockHeight = 400/gridWidth+"px";
 
+// create a new gridContainer element
 
 	var div = document.createElement('DIV');
 	div.setAttribute("id", "gridContainer");
 	document.getElementById('container').appendChild(div); 
 
-
+// loop to create grid
 	var i = 0;
 	while ( i < grid) {
 		var gridDiv = document.createElement('DIV');
 		gridDiv.setAttribute("class", "gridsquare");
+		gridDiv.style.width = blockWidth;
+		gridDiv.style.height = blockHeight;
 		document.getElementById('gridContainer').appendChild(gridDiv); 
 		i++;
 	}
 
 }
+
+
 
 //creates div on page load
 document.addEventListener("DOMContentLoaded",newGrid,false);
