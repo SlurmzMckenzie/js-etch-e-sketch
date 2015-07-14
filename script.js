@@ -27,7 +27,6 @@ function newGrid() {
 	if doesn't exist do nothing
 
 */
-	
 	var gridContainer = document.getElementById('gridContainer')
 
 	if (gridContainer != null) {
@@ -39,7 +38,6 @@ function newGrid() {
 	var blockHeight = 400/gridWidth+"px";
 
 // create a new gridContainer element
-
 	var div = document.createElement('DIV');
 	div.setAttribute("id", "gridContainer");
 	document.getElementById('container').appendChild(div); 
@@ -68,7 +66,6 @@ document.addEventListener("DOMContentLoaded",newGrid,false);
 window.addEventListener("load",function(){
 
 	//button listener event
-
 	var n = document.getElementById('newGridButton');
 	console.log(n);
 	n.addEventListener("click",gridPrompt,false);
