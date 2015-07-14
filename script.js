@@ -20,7 +20,7 @@ function newGrid() {
 
 */
 	if (grid > 1000000) {
-		alert("Thats over 1 million squares, you'll regret it, enter a smaller number.");
+		alert("Thats over 1 million squares, you'll regret it. \nEnter a smaller number.");
 		gridPrompt();
 	};
 
