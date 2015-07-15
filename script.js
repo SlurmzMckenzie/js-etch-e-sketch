@@ -30,8 +30,9 @@ function newGrid() {
 	var gridContainer = document.getElementById('gridContainer')
 
 	if (gridContainer != null) {
-		gridContainer.remove();
-	};
+		//gridContainer.remove();
+		while (gridContainer.firstChild) gridContainer.removeChild(gridContainer.firstChild);
+	}; 
 
 //calculate width per grid square
 	var blockWidth = 570/gridWidth+"px";
