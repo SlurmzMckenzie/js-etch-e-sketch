@@ -44,8 +44,8 @@ function newGrid() {
 	}; 
 
 //calculate width per grid square
-	var blockWidth = 100/gridWidth+"%";
-	var blockHeight = 100/gridWidth+"%";
+	var blockWidth = 570/gridWidth+"px";
+	var blockHeight = Math.ceil(400/gridWidth)+"px";
 
 // create a new gridContainer element
 	var div = document.createElement('DIV');
