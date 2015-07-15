@@ -1,10 +1,15 @@
 
-// Default Grid Size
-var grid = Math.pow(20,2);
-var gridWidth = 20;
+// Default variables
+var grid = Math.pow(40,2);
+var gridWidth = 40;
+var rgba1 = 220;
+var rgba1 = 225;
+var rgba1 = 228;
 
 //draws new grid from prompt
-function gridPrompt() {
+function gridPrompt(mode) {
+	var mode = mode;
+	console.log(mode);
 	gridWidth = prompt("How many squares wide would you like your grid?");
 	grid = Math.pow(gridWidth,2);
 	
@@ -12,8 +17,32 @@ function gridPrompt() {
 }
 
 // creates DIV element inside container
-function newGrid() {
 
+function newGrid() {
+	killGrid();
+	drawGrid();
+}
+
+/*
+	If statement to check if the gridContainer DIV exists and if so destroy it
+	if grid container exists destroy it
+	if doesn't exist do nothing
+*/
+function killGrid(){
+	console.time('remove exisiting grid');
+	var gridContainer = document.getElementById('gridContainer')
+	
+	if (gridContainer != null) {
+		gridContainer.remove();
+		//while (gridContainer.firstChild) gridContainer.removeChild(gridContainer.firstChild);
+		//gridContainer.innerHTML  ="";
+	console.timeEnd('remove exisiting grid');
+	}
+}
+
+
+function drawGrid() {
+console.time('Drawing Grid');
 // if statement to check input from prompt and ensure it's not too large that it will crash browser
 	if (gridWidth > 200) {
 		alert("Thats a lot of squares, you'll regret it. \nEnter a smaller number.");
@@ -25,23 +54,6 @@ function newGrid() {
 		alert("You didn't enter anything, try again.");
 		gridPrompt();
 	}
-
-
-/*
-	If statement to check if the gridContainer DIV exists and if so destroy it
-	
-	if grid container exists destroy it
-
-	if doesn't exist do nothing
-
-*/
-	var gridContainer = document.getElementById('gridContainer')
-
-	if (gridContainer != null) {
-		gridContainer.remove();
-		//while (gridContainer.firstChild) gridContainer.removeChild(gridContainer.firstChild);
-		//gridContainer.innerHTML  ="";
-	}; 
 
 //calculate width per grid square
 	var blockWidth = 570/gridWidth+"px";
@@ -60,12 +72,12 @@ function newGrid() {
 		gridDiv.style.width = blockWidth;
 		gridDiv.style.height = blockHeight;
 		document.getElementById('gridContainer').appendChild(gridDiv); 
-		gridDiv.addEventListener("mouseover", mouseOver1);
+		gridDiv.addEventListener("mouseover", modular);
 		i++;
 	}
+console.timeEnd('Drawing Grid');
 
 }
-
 
 
 //creates div on page load
@@ -77,9 +89,11 @@ document.addEventListener("DOMContentLoaded",newGrid,false);
 window.addEventListener("load",function(){
 
 	//button listener event
-	var n = document.getElementById('newGridButton');
-	console.log(n);
-	n.addEventListener("click",gridPrompt,false);
+	var newGridButton = document.getElementById('newGridButton');
+	var modularButton = document.getElementById('modularButton');
+	//console.log(n);
+	newGridButton.addEventListener("click",function () {gridPrompt('standard')},false);
+	modularButton.addEventListener("click",function () {gridPrompt('modular')},false);
 
 
 //End of paged loaded wrapper
@@ -90,4 +104,9 @@ function mouseOver1() {
 	this.classList.add("mouseOver");
 }
 
+function modular() {
+	
 
+	console.log(bgc);
+	this.setAttribute('background-color', 'rgba('+rgba1+','+rgba2+','+rgba3+', 1)');
+}
