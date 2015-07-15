@@ -2,13 +2,18 @@
 // Default variables
 var grid = Math.pow(40,2);
 var gridWidth = 40;
+
 var rgba1 = 220;
-var rgba1 = 225;
-var rgba1 = 228;
+var rgba2 = 225;
+var rgba3 = 228;
+var mode = standard;
+console.log(mode);
+
 
 //draws new grid from prompt
+
 function gridPrompt(mode) {
-	var mode = mode;
+	mode = mode;
 	console.log(mode);
 	gridWidth = prompt("How many squares wide would you like your grid?");
 	grid = Math.pow(gridWidth,2);
@@ -16,6 +21,14 @@ function gridPrompt(mode) {
 	newGrid();
 }
 
+
+/*function gridPrompt() {
+	gridWidth = prompt("How many squares wide would you like your grid?");
+	grid = Math.pow(gridWidth,2);
+	
+	newGrid();
+}
+*/
 // creates DIV element inside container
 
 function newGrid() {
@@ -64,6 +77,7 @@ console.time('Drawing Grid');
 	div.setAttribute("id", "gridContainer");
 	document.getElementById('container').appendChild(div); 
 
+
 // loop to create grid
 	var i = 0;
 	while ( i < grid) {
@@ -72,7 +86,7 @@ console.time('Drawing Grid');
 		gridDiv.style.width = blockWidth;
 		gridDiv.style.height = blockHeight;
 		document.getElementById('gridContainer').appendChild(gridDiv); 
-		gridDiv.addEventListener("mouseover", modular);
+		gridDiv.addEventListener("mouseover", modular,true);
 		i++;
 	}
 console.timeEnd('Drawing Grid');
@@ -81,7 +95,7 @@ console.timeEnd('Drawing Grid');
 
 
 //creates div on page load
-document.addEventListener("DOMContentLoaded",newGrid,false);
+document.addEventListener("DOMContentLoaded",drawGrid,false);
 
 
 
@@ -92,21 +106,33 @@ window.addEventListener("load",function(){
 	var newGridButton = document.getElementById('newGridButton');
 	var modularButton = document.getElementById('modularButton');
 	//console.log(n);
-	newGridButton.addEventListener("click",function () {gridPrompt('standard')},false);
-	modularButton.addEventListener("click",function () {gridPrompt('modular')},false);
+	newGridButton.addEventListener("click",function () {gridPrompt(standard)},false);
+	modularButton.addEventListener("click",function () {gridPrompt(modular)},false);
 
 
 //End of paged loaded wrapper
 });
 
 // function to change class on mouseover to darker colour
-function mouseOver1() {
+function standard() {
 	this.classList.add("mouseOver");
 }
 
-function modular() {
-	
 
-	console.log(bgc);
-	this.setAttribute('background-color', 'rgba('+rgba1+','+rgba2+','+rgba3+', 1)');
+function modular() {
+	rgba1 = valBetween(rgba1+getRandomInt());
+	rgba2 = valBetween(rgba2+getRandomInt());
+	rgba3 = valBetween(rgba3+getRandomInt());
+	var rgba = "rgba("+valBetween(rgba1)+","+valBetween(rgba2)+","+valBetween(rgba3)+", 1)";
+	console.log(rgba);
+
+	this.style.backgroundColor = rgba;
+}
+
+function getRandomInt() {
+  return Math.round(Math.random() * (9 - -9 )) + -9;
+}
+
+function valBetween(v) {
+    return (Math.min(255, Math.max(0, v)));
 }

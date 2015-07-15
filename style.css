@@ -22,13 +22,7 @@ html {
 
 .gridsquare {
 	float: left;
-	width: 10px;
-	height: 10px;
 	background-color: rgba(220, 225, 228, 1);
-}
-
-.row {
-	clear: both;
 }
 
 #gridContainer {
