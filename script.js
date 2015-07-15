@@ -7,6 +7,7 @@ var gridWidth = 20;
 function gridPrompt() {
 	gridWidth = prompt("How many squares wide would you like your grid?");
 	grid = Math.pow(gridWidth,2);
+	
 	newGrid();
 }
 
@@ -17,7 +18,14 @@ function newGrid() {
 	if (gridWidth > 200) {
 		alert("Thats a lot of squares, you'll regret it. \nEnter a smaller number.");
 		gridPrompt();
-	};
+	} else if (gridWidth == "") {
+		alert("You didn't enter anything, try again.");
+		gridPrompt();
+	} else if (gridWidth ==null) {
+		alert("You didn't enter anything, try again.");
+		gridPrompt();
+	}
+
 
 /*
 	If statement to check if the gridContainer DIV exists and if so destroy it
@@ -30,13 +38,14 @@ function newGrid() {
 	var gridContainer = document.getElementById('gridContainer')
 
 	if (gridContainer != null) {
-		//gridContainer.remove();
-		while (gridContainer.firstChild) gridContainer.removeChild(gridContainer.firstChild);
+		gridContainer.remove();
+		//while (gridContainer.firstChild) gridContainer.removeChild(gridContainer.firstChild);
+		//gridContainer.innerHTML  ="";
 	}; 
 
 //calculate width per grid square
-	var blockWidth = 570/gridWidth+"px";
-	var blockHeight = 400/gridWidth+"px";
+	var blockWidth = 100/gridWidth+"%";
+	var blockHeight = 100/gridWidth+"%";
 
 // create a new gridContainer element
 	var div = document.createElement('DIV');
