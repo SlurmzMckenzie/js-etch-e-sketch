@@ -50,6 +50,7 @@ function newGrid() {
 		gridDiv.style.width = blockWidth;
 		gridDiv.style.height = blockHeight;
 		document.getElementById('gridContainer').appendChild(gridDiv); 
+		gridDiv.addEventListener("mouseover", mouseOver1);
 		i++;
 	}
 
@@ -73,3 +74,10 @@ window.addEventListener("load",function(){
 
 //End of paged loaded wrapper
 });
+
+// function to change class on mouseover to darker colour
+function mouseOver1() {
+	this.classList.add("mouseOver");
+}
+
+

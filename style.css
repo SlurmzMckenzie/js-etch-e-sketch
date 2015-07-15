@@ -17,7 +17,6 @@ html {
 	overflow: hidden;
 	border: 1px solid red;
 	padding: 1px;
-	background-color: blue;
 	border-radius: 10px;
 }
 
@@ -87,4 +86,8 @@ h1 {
 
 #bottom {
 	text-align: center;
+}
+
+.mouseOver {
+	background-color: rgba(105, 105, 105, 1);
 }
