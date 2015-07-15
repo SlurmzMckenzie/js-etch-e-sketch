@@ -1,7 +1,7 @@
 
 // Default Grid Size
-var grid = Math.pow(16,2);
-var gridWidth = 16;
+var grid = Math.pow(20,2);
+var gridWidth = 20;
 
 //draws new grid from prompt
 function gridPrompt() {
