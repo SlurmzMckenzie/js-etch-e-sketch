@@ -47,6 +47,7 @@ function killGrid(){
 	
 	if (gridContainer != null) {
 		gridContainer.remove();
+		//$('#gridContainer').empty();
 		//while (gridContainer.firstChild) gridContainer.removeChild(gridContainer.firstChild);
 		//gridContainer.innerHTML  ="";
 	console.timeEnd('remove exisiting grid');
