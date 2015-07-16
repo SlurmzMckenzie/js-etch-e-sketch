@@ -6,14 +6,14 @@ var gridWidth = 40;
 var rgba1 = 220;
 var rgba2 = 225;
 var rgba3 = 228;
-var mode = standard;
+var mode = "standard";
 console.log(mode);
 
 
 //draws new grid from prompt
 
-function gridPrompt(mode) {
-	mode = mode;
+function gridPrompt(v) {
+	mode = v;
 	console.log(mode);
 	gridWidth = prompt("How many squares wide would you like your grid?");
 	grid = Math.pow(gridWidth,2);
@@ -86,7 +86,12 @@ console.time('Drawing Grid');
 		gridDiv.style.width = blockWidth;
 		gridDiv.style.height = blockHeight;
 		document.getElementById('gridContainer').appendChild(gridDiv); 
-		gridDiv.addEventListener("mouseover", modular,true);
+		if (mode == "standard") {
+			gridDiv.addEventListener("mouseover", standard,false);
+		} else {
+			gridDiv.addEventListener("mouseover", modular,false);
+		};
+		// gridDiv.addEventListener("mouseover", function() {drawMode(mode);} ,false);
 		i++;
 	}
 console.timeEnd('Drawing Grid');
@@ -106,8 +111,8 @@ window.addEventListener("load",function(){
 	var newGridButton = document.getElementById('newGridButton');
 	var modularButton = document.getElementById('modularButton');
 	//console.log(n);
-	newGridButton.addEventListener("click",function () {gridPrompt(standard)},false);
-	modularButton.addEventListener("click",function () {gridPrompt(modular)},false);
+	newGridButton.addEventListener("click",function () {gridPrompt("standard")},false);
+	modularButton.addEventListener("click",function () {gridPrompt("modular")},false);
 
 
 //End of paged loaded wrapper
@@ -135,4 +140,12 @@ function getRandomInt() {
 
 function valBetween(v) {
     return (Math.min(255, Math.max(0, v)));
-} 
+}  
+
+/*function drawMode(mode) {
+	if (mode == "standard") {
+		standard();
+	} else {
+		modular();
+	};
+}*/
