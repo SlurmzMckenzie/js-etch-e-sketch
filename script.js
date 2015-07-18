@@ -17,8 +17,18 @@ function gridPrompt(v) {
 	console.log(mode);
 	gridWidth = prompt("How many squares wide would you like your grid?");
 	grid = Math.pow(gridWidth,2);
-	
-	newGrid();
+// if statement to check input from prompt and ensure it's not too large that it will crash browser
+	if (gridWidth > 200) {
+		alert("Thats a lot of squares, you'll regret it. \nEnter a smaller number.");
+		gridPrompt();
+	} else if (gridWidth == "") {
+		alert("You didn't enter anything, try again.");
+		gridPrompt();
+	} else if (gridWidth ==null) {
+		alert("You didn't enter anything, try again.");
+		gridPrompt();
+	}
+
 }
 
 
@@ -31,7 +41,8 @@ function gridPrompt(v) {
 */
 // creates DIV element inside container
 
-function newGrid() {
+function newGrid(v) {
+	gridPrompt(v);
 	killGrid();
 	drawGrid();
 }
@@ -57,17 +68,6 @@ function killGrid(){
 
 function drawGrid() {
 console.time('Drawing Grid');
-// if statement to check input from prompt and ensure it's not too large that it will crash browser
-	if (gridWidth > 200) {
-		alert("Thats a lot of squares, you'll regret it. \nEnter a smaller number.");
-		gridPrompt();
-	} else if (gridWidth == "") {
-		alert("You didn't enter anything, try again.");
-		gridPrompt();
-	} else if (gridWidth ==null) {
-		alert("You didn't enter anything, try again.");
-		gridPrompt();
-	}
 
 //calculate width per grid square
 	var blockWidth = 570/gridWidth+"px";
@@ -112,8 +112,8 @@ window.addEventListener("load",function(){
 	var newGridButton = document.getElementById('newGridButton');
 	var modularButton = document.getElementById('modularButton');
 	//console.log(n);
-	newGridButton.addEventListener("click",function () {gridPrompt("standard")},false);
-	modularButton.addEventListener("click",function () {gridPrompt("modular")},false);
+	newGridButton.addEventListener("click",function () {newGrid("standard")},false);
+	modularButton.addEventListener("click",function () {newGrid("modular")},false);
 
 
 //End of paged loaded wrapper
